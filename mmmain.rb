@@ -17,7 +17,7 @@ def play_codemaker
   key = ask_key
   game = MMGame.new(key)
   guess = '1122'
-  ans_set = ('1111'..'6666').to_a
+  ans_set = ('1111'..'6666').to_a.select {|elem| valid_key?(elem)}
   while !game.over? && game.turn < 12
     game.try(guess)
     ans_set.select! {|elem| compare_keys(guess, elem) == game.last_feedback}
@@ -36,7 +36,7 @@ def play_codebreaker
     game.try(key)
     puts game.log
   end
-  puts ( game.log.end_with?('xxxx') ? 'YOU WIN' : "YOU LOSE, THE KEY WAS #{game.key}" )
+  puts ( game.log.end_with?("xxxx\n") ? 'YOU WIN' : "YOU LOSE, THE KEY WAS #{game.key}" )
 end
 
 play_mastermind

@@ -14,10 +14,10 @@ module MMMod
 
   def ask_key
     # Returns a valid 4-digit string between 1111 and 6666
-    puts "Introduce a key:\n(4 digit number between 1111 and 6666)"
+    puts "Introduce a key:\n(4 digit number, each between 1 and 6)"
     key = gets.chomp
     def ask_again
-      puts "Introduce a VALID key:\n(4 digit number between 1111 and 6666)"
+      puts "Introduce a VALID key:\n(4 digit number, each between 1 and 6)"
       key = gets.chomp
       key = valid_key?(key) ? key : ask_again
     end
