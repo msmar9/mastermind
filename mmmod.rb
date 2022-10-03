@@ -40,7 +40,7 @@ module MMMod
         aux2.push(guess[index])
       end
     end
-    # The we count the different-place matches, careful to match each character only once
+    # Then we count the different-place matches, careful to match each character only once
     aux2.each do |digit|
       if index = aux1.index(digit)
         aux1.delete_at(index)
@@ -50,10 +50,21 @@ module MMMod
 
     output
   end
+
+  def ask_role
+    puts "Choose a role: Codemaker (1) or Codebreaker (2)"
+    role = gets.chomp
+    def ask_again
+      puts "Type either 1 (Codemaker) or 2 (Codebreaker)"
+      role = gets.chomp
+      role = ["1", "2"].include?(role) ? role : ask_again
+    end
+    role = ["1", "2"].include?(role) ? role : ask_again
+  end
 end
 #-----------------------
 # Testing
-include MMMod
+#include MMMod
 #p generate_key
 #p valid_key?('5586') == false
 #p valid_key?('4201') == false
@@ -65,3 +76,4 @@ include MMMod
 #p compare_keys('5421', '5421') == 'xxxx'
 #p compare_keys('5421', '1245') == 'oooo'
 #p compare_keys('5555', '1111') == ''
+#p ask_role
