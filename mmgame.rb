@@ -19,7 +19,7 @@ class MMGame
   end
 
   def over?
-    @log.end_with?('xxxx')
+    @log.end_with?("xxxx\n")
   end
 end
 

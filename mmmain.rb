@@ -16,8 +16,15 @@ def play_codemaker
 
   key = ask_key
   game = MMGame.new(key)
-  game.try('1100')
+  guess = '1122'
+  ans_set = ('1111'..'6666').to_a
+  while !game.over? && game.turn < 12
+    game.try(guess)
+    ans_set.select! {|elem| compare_keys(guess, elem) == game.last_feedback}
+    guess = ans_set[0]
+  end
   puts game.log
+  puts game.log.end_with?("xxxx\n") ? "COMPUTER WINS, OBVIOUSLY" : "????????????????????????"
 end
 
 def play_codebreaker
